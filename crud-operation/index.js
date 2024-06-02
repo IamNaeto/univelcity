@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const productScheme = require("./models/productModel.js");
+const productList = require("./models/productModel.js");
 
 app = express(); //express instance
 app.use(express.json()); //registering express json middleware
@@ -38,8 +39,8 @@ app.post("/api/product/list/create", async (req, res) => {
     !req.body.product_qty ||
     !req.body.product_price
   ) {
-    res.status(401).send({
-      msg: "All fields must be field",
+    res.status(400).send({
+      msg: "All fields must be filled",
     });
   }
 
