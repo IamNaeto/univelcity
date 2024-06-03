@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const productScheme = require("./models/productModel.js");
-const productList = require("./models/productModel.js");
 
 app = express(); //express instance
 app.use(express.json()); //registering express json middleware
@@ -34,17 +33,17 @@ app.get("/", (req, res) => {
 
 // post method
 app.post("/api/product/list/create", async (req, res) => {
-  if (
-    !req.body.product_name ||
-    !req.body.product_qty ||
-    !req.body.product_price
-  ) {
-    res.status(400).send({
-      msg: "All fields must be filled",
-    });
-  }
-
   try {
+    if (
+      !req.body.product_name ||
+      !req.body.product_qty ||
+      !req.body.product_price
+    ) {
+      res.status(400).send({
+        msg: "All fields must be filled",
+      });
+      return;
+    }
     const productDetails = await productScheme.create(req.body);
     res.status(201).send(productDetails);
   } catch (error) {
@@ -52,5 +51,20 @@ app.post("/api/product/list/create", async (req, res) => {
       msg: "Internal Server Error",
       error: error.message,
     });
+  }
+});
+
+// get method
+app.get("/api/product/list/create", async (req, res) => {
+  try {
+    const products = await productScheme.find();
+    if (products) {
+      res.status(200).send(products);
+    } else {
+      res.status(404).send("Not Product Found");
+      return;
+    }
+  } catch (error) {
+    res.status(500).send("Internal Server Error");
   }
 });
