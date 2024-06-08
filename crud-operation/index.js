@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
 const productScheme = require("./models/productModel.js");
@@ -12,8 +13,18 @@ app.listen(PORT, (req, res) => {
   console.log(`Server running on port ${PORT}`);
 });
 
+// mongoose //connection to mongodb
+//   .connect("mongodb://localhost:27017/univelcity")
+//   .then(() => {
+//     console.log("Connected to database successfully");
+//   })
+//   .catch(() => {
+//     console.log(`Connection to database failed`);
+//   });
+
+const dbHost = process.env.DB_CONNECTION_STRING;
 mongoose //connection to mongodb
-  .connect("mongodb://localhost:27017/univelcity")
+  .connect(dbHost)
   .then(() => {
     console.log("Connected to database successfully");
   })
