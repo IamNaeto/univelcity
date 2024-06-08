@@ -96,13 +96,12 @@ app.put("/api/product/list/update/:id", async (req, res) => {
   }
 });
 
-
 // delete method
 app.delete("/api/product/list/delete/:id", async (req, res) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     const deletedProduct = await productScheme.findByIdAndDelete(id);
-    if(!deletedProduct){
+    if (!deletedProduct) {
       res.status(404).send({ msg: "Invalid ID; product not found" });
       return;
     }
@@ -110,4 +109,4 @@ app.delete("/api/product/list/delete/:id", async (req, res) => {
   } catch (error) {
     res.status(500).send({ msg: "Internal Server Error" });
   }
-})
+});
