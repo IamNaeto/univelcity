@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const productScheme = require("./models/productModel.js");
@@ -77,5 +77,20 @@ app.get("/api/product/list/create", async (req, res) => {
     }
   } catch (error) {
     res.status(500).send("Internal Server Error");
+  }
+});
+
+// put method
+app.put("/api/product/list/update/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const productID = await productScheme.findByIdAndUpdate(id, req.body);
+    if (!productID) {
+      res.status(404).send({ msg: "Invalid ID; product not found" });
+    }
+    const updatedProduct = await productScheme.findById(id);
+    res.status(200).send(updatedProduct);
+  } catch (error) {
+    res.status(500).send({ msg: "Internal Server Error" });
   }
 });
