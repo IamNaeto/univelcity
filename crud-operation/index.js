@@ -87,6 +87,7 @@ app.put("/api/product/list/update/:id", async (req, res) => {
     const productID = await productScheme.findByIdAndUpdate(id, req.body);
     if (!productID) {
       res.status(404).send({ msg: "Invalid ID; product not found" });
+      return;
     }
     const updatedProduct = await productScheme.findById(id);
     res.status(200).send(updatedProduct);
@@ -94,3 +95,19 @@ app.put("/api/product/list/update/:id", async (req, res) => {
     res.status(500).send({ msg: "Internal Server Error" });
   }
 });
+
+
+// delete method
+app.delete("/api/product/list/delete/:id", async (req, res) => {
+  try {
+    const {id} = req.params;
+    const deletedProduct = await productScheme.findByIdAndDelete(id);
+    if(!deletedProduct){
+      res.status(404).send({ msg: "Invalid ID; product not found" });
+      return;
+    }
+    res.status(200).send({ msg: "Product deleted successfully" });
+  } catch (error) {
+    res.status(500).send({ msg: "Internal Server Error" });
+  }
+})
