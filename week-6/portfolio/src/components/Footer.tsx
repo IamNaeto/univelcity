@@ -6,6 +6,6 @@ const Footer = () => {
             <p>&copy; Charles Obimnaeto Egesionu | 2024</p>
         </footer>
     );
-}
+};
 
 export default Footer;

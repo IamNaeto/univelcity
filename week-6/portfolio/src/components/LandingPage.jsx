@@ -34,7 +34,7 @@ const LandingPage = () => (
 
       <button className="flex items-center gap-1 mt-6 bg-gray-700 text-white px-6 py-3 rounded font-bold ">
         Resume
-        <HiOutlineDownload className="text-xl animate-bounce"/>
+        <HiOutlineDownload className="text-xl animate-bounce" />
       </button>
     </div>
 
