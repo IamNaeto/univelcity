@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function SimpleForm() {
+function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -22,7 +22,7 @@ function SimpleForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-16">
+    <form onSubmit={handleSubmit} className="mt-10">
       <h2 className="text-2xl font-semibold mb-2">Contact</h2>
       <p className="600 mb-4">Feel free to reach out to me.</p>
       <div className="mb-4">
@@ -33,7 +33,7 @@ function SimpleForm() {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-md sm:text-sm border-gray-300 rounded-md p-2"
+          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-md sm:text-sm border border-gray-300 rounded-md p-3"
           required
         />
       </div>
@@ -45,7 +45,7 @@ function SimpleForm() {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-md sm:text-sm border-gray-300 rounded-md p-2"
+          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-md sm:text-sm border border-gray-300 rounded-md p-3"
           required
         />
       </div>
@@ -56,7 +56,7 @@ function SimpleForm() {
           name="message"
           value={formData.message}
           onChange={handleChange}
-          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-md sm:text-sm border-gray-300 rounded-md"
+          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-md sm:text-sm border border-gray-300 rounded-md"
           rows="10"
           required
         ></textarea>
@@ -66,4 +66,4 @@ function SimpleForm() {
   );
 }
 
-export default SimpleForm;
+export default Contact;
