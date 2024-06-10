@@ -1,11 +1,12 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const productSchema = require("./models/productModel.js");
+const productRoute = require("./route/productRoute.js");
 
-app = express(); //express instance
-app.use(express.json()); //registering express json middleware
+app = express(); // express instance
+app.use(express.json()); // registering express json middleware
 app.use(express.urlencoded({ extended: false })); // registering urlencoded to express which helps us to post using a form or urlencoded format
+app.use(process.env.APP_PRODUCT_ROUTE_URL, productRoute);
 
 const PORT = process.env.PORT || 3000; //port number
 
@@ -41,75 +42,3 @@ app.get("/", (req, res) => {
     })
     .status(200);
 });
-
-// post method
-app.post(`${process.env.APP_PRODUCT_ROUTE_URL}/create`, async (req, res) => {
-  try {
-    if (
-      !req.body.product_name ||
-      !req.body.product_qty ||
-      !req.body.product_price
-    ) {
-      res.status(400).send({
-        msg: "All fields must be filled",
-      });
-      return;
-    }
-    const productDetails = await productSchema.create(req.body);
-    res.status(201).send(productDetails);
-  } catch (error) {
-    res.status(500).send({
-      msg: "Internal Server Error",
-      error: error.message,
-    });
-  }
-});
-
-// get method
-app.get(process.env.APP_PRODUCT_ROUTE_URL, async (req, res) => {
-  try {
-    const products = await productSchema.find();
-    if (products) {
-      res.status(200).send(products);
-    } else {
-      res.status(404).send("Not Product Found");
-      return;
-    }
-  } catch (error) {
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-// put method
-app.put(`${process.env.APP_PRODUCT_ROUTE_URL}/update/:id`, async (req, res) => {
-  try {
-    const { id } = req.params;
-    const productID = await productSchema.findByIdAndUpdate(id, req.body);
-    if (!productID) {
-      res.status(404).send({ msg: "Invalid ID; product not found" });
-      return;
-    }
-    const updatedProduct = await productSchema.findById(id);
-    res.status(200).send(updatedProduct);
-  } catch (error) {
-    res.status(500).send({ msg: "Internal Server Error" });
-  }
-});
-
-// delete method
-app.delete(
-  `${process.env.APP_PRODUCT_ROUTE_URL}/delete/:id`,
-  async (req, res) => {
-    try {
-      const { id } = req.params;
-      const deletedProduct = await productSchema.findByIdAndDelete(id);
-      if (!deletedProduct) {
-        res.status(404).send({ msg: "Invalid ID; product not found" });
-        return;
-      }
-      res.status(200).send({ msg: "Product deleted successfully" });
-    } catch (error) {
-      res.status(500).send({ msg: "Internal Server Error" });
-    }
-  }
-);
