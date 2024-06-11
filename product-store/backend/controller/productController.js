@@ -3,6 +3,8 @@ const productSchema = require("../models/productModel");
 // Helps to create a product
 const createProducts = async (req, res) => {
   try {
+    const { product_name, product_qty, product_price } = req.body;
+
     if (
       !req.body.product_name ||
       !req.body.product_qty ||
@@ -12,6 +14,18 @@ const createProducts = async (req, res) => {
         msg: "All fields must be filled",
       });
     }
+
+    // Check if a product with the same name already exits
+    const existingProduct = await productSchema.findOne({
+      product_name,
+      product_qty,
+      product_price,
+    });
+
+    if (existingProduct) {
+      return res.status(409).send({ msg: "Product already exists" });
+    }
+
     const productDetails = await productSchema.create(req.body);
     res.status(201).send(productDetails);
   } catch (error) {
