@@ -2,11 +2,15 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const productRoute = require("./route/productRoute.js");
+const cors = require("cors");
 
-app = express(); // express instance
+const app = express(); // express instance
+
+app.use(cors()); // Use CORS middleware
+
 app.use(express.json()); // registering express json middleware
 app.use(express.urlencoded({ extended: false })); // registering urlencoded to express which helps us to post using a form or urlencoded format
-app.use(process.env.APP_PRODUCT_ROUTE_URL, productRoute);
+app.use(process.env.APP_PRODUCT_ROUTE_URL, productRoute); // registering urlencoded to express
 
 const PORT = process.env.PORT || 3000; //port number
 
