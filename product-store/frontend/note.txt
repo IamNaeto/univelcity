@@ -1,0 +1,6 @@
+Installations
+- npm install react-router-dom
+- npm install axios
+- npm install react-icons
+- npm install sonner
+- npm install --save react-spinners
