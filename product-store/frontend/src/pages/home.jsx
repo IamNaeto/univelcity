@@ -70,7 +70,7 @@ const Home = () => {
       <div>
         {loading ? (
           <div className="min-h-[70vh] flex flex-col items-center justify-center gap-2">
-            <div className="text-xl font-semibold text-sky-800">Loading...</div>
+            <div className="text-3xl font-semibold text-sky-800">Loading...</div>
             <PropagateLoader color="#075985" />
           </div>
         ) : showType === "table" ? (
