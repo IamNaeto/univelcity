@@ -14,6 +14,10 @@ const productSchema = mongoose.Schema(
       type: Number,
       require: true,
     },
+    product_description: {
+      type: String,
+      require: true,
+    },
   },
 
   {

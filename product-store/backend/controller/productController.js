@@ -8,7 +8,8 @@ const createProducts = async (req, res) => {
     if (
       !req.body.product_name ||
       !req.body.product_qty ||
-      !req.body.product_price
+      !req.body.product_price ||
+      !req.body.product_description
     ) {
       return res.status(400).send({
         msg: "All fields must be filled",
