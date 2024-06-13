@@ -5,6 +5,7 @@ import { Toaster, toast } from "sonner";
 import ProductCard from "../components/utilies/ProductCard";
 import ProductTable from "../components/utilies/ProductTable";
 import { Link } from "react-router-dom";
+import PropagateLoader from "react-spinners/PropagateLoader";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -19,11 +20,13 @@ const Home = () => {
     setShowType("card");
   };
 
+  const apiUrl = import.meta.env.VITE_APP_PRODUCT_ROUTE_URL;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:3000/api/products");
+        const response = await axios.get(apiUrl);
         const data = response.data;
         setData(data);
         console.log(data);
@@ -37,7 +40,7 @@ const Home = () => {
     };
 
     fetchData();
-  }, []);
+  }, [apiUrl]);
 
   return (
     <div className="px-20 py-4">
@@ -66,7 +69,10 @@ const Home = () => {
 
       <div>
         {loading ? (
-          <div>Loading...</div>
+          <div className="min-h-[70vh] flex flex-col items-center justify-center gap-2">
+            <div className="text-xl font-semibold text-sky-800">Loading...</div>
+            <PropagateLoader color="#075985" />
+          </div>
         ) : showType === "table" ? (
           <ProductTable data={data} />
         ) : (

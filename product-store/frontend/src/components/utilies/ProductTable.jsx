@@ -25,9 +25,9 @@ const ProductTable = ({ data }) => {
             <td className="border border-slate-900 rounded-md text-center">{product.product_qty}</td>
             <td className="border border-slate-900 rounded-md text-center">
               {product.product_qty > 0 ? (
-                <span className="w-full text-white bg-green-600 px-6 rounded-full">In Stock</span>
+                <span className="text-white bg-green-600 px-6 rounded-full">In Stock</span>
               ) : (
-                <span className="w-full text-white bg-red-600 px-6 rounded-full">Out of Stock</span>
+                <span className="text-white bg-red-600 px-6 rounded-full">Out of Stock</span>
               )}</td>
             <td className="border border-slate-900 rounded-md text-center">
               <div className="flex justify-center gap-x-4">
