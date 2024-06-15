@@ -5,6 +5,7 @@ const createProducts = async (req, res) => {
   try {
     const { product_name, product_qty, product_price } = req.body;
 
+    // Check if all required fields are present
     if (
       !req.body.product_name ||
       !req.body.product_qty ||
@@ -16,20 +17,22 @@ const createProducts = async (req, res) => {
       });
     }
 
-    // Check if a product with the same name already exits
+    // Check if a product with the same name already exists
     const existingProduct = await productSchema.findOne({
       product_name,
-      product_qty,
-      product_price,
     });
 
     if (existingProduct) {
       return res.status(409).send({ msg: "Product already exists" });
     }
 
+    // Create the new product
     const productDetails = await productSchema.create(req.body);
+
+    // Send the created product details as a response
     res.status(201).send(productDetails);
   } catch (error) {
+    // Handle any errors that occur during the process
     res.status(500).send({
       msg: "Internal Server Error",
       error: error.message,
