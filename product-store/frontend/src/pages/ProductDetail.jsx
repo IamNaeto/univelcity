@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { TiArrowBack } from "react-icons/ti";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { BiSolidError } from "react-icons/bi";
+import BackButton from "../components/utilies/BackButton";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -84,9 +83,7 @@ const ProductDetails = () => {
             <button className="text-white border bg-red-600 hover:bg-red-800 rounded-full px-6 py-4 transition-all delay-150">Delete Product</button>
         </div>
 
-        <Link to="/" className="max-w-[100px] flex items-center gap-2  text-white hover:text-gray-400 transition-all delay-150">
-           <TiArrowBack className="text-4xl"/> Back
-        </Link>
+        <BackButton route={"/"} />
       </div>
     </div>
   );

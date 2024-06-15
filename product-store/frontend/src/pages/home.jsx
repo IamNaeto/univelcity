@@ -43,7 +43,7 @@ const Home = () => {
   }, [apiUrl]);
 
   return (
-    <div className="px-20 py-4">
+    <div className="min-h-screen px-20 py-4 bg-[#f1f5fd]">
       <Toaster position="top-right" richColors />
       <div className="flex justify-center items-center gap-x-4">
         <button
@@ -62,7 +62,7 @@ const Home = () => {
 
       <div className="flex justify-between items-center">
         <h1 className="text-3xl text-sky-800 my-8 font-bold">PRODUCT LIST</h1>
-        <Link to="/">
+        <Link to="/product/create">
           <MdAddBox className="text-sky-800 hover:text-gray-800 transition-all delay-150 text-4xl" />
         </Link>
       </div>

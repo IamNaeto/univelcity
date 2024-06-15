@@ -1,0 +1,22 @@
+.input{
+    border: 2px solid #fff;
+    padding: 4px 8px;
+    outline: none;
+    width: 100%;
+    color: #000;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.label{
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.bg{
+    background-image: url(./assets/img/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
