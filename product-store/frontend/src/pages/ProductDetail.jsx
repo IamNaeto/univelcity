@@ -50,7 +50,7 @@ const ProductDetails = () => {
     navigate(`/product/update/${id}`);
   };
   return (
-    <div className="min-h-screen grid grid-cols-1 xl:grid-cols-2 items-center gap-6 px-10 border bg-gray-800 rounded-md">
+    <div className="min-h-screen grid grid-cols-1 xl:grid-cols-2 items-center gap-6 px-10 py-4 border bg-gray-800 rounded-md">
       <div>
         <img
           className="w-full rounded-xl"
