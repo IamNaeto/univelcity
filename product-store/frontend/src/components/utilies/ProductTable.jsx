@@ -2,8 +2,16 @@ import { Link } from "react-router-dom";
 import { TbInfoSquareRounded } from "react-icons/tb";
 import { BiMessageSquareEdit } from "react-icons/bi";
 import { MdDeleteOutline } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+
 
 const ProductTable = ({ data }) => {
+  const navigate = useNavigate()
+
+  const handleEditProduct = (id) => {
+    navigate(`/product/update/${id}`)
+  }
+
   return (
     <table className="w-full border-separate border-spacing-1">
       <thead>
@@ -34,9 +42,12 @@ const ProductTable = ({ data }) => {
                 <Link to={"/"}>
                   <TbInfoSquareRounded className="text-2xl text-green-600" />
                 </Link>
-                <Link to={"/"}>
-                  <BiMessageSquareEdit className="text-2xl text-yellow-600" />
-                </Link>
+
+                  <BiMessageSquareEdit 
+                  className="text-2xl text-yellow-600 hover:text-yellow-400 cursor-pointer"
+                  onClick={() => (handleEditProduct(product._id))}
+                  />
+                  
                 <Link to={"/"}>
                   <MdDeleteOutline className="text-2xl text-red-600" />
                 </Link>

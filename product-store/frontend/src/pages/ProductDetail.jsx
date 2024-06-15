@@ -4,11 +4,13 @@ import axios from "axios";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { BiSolidError } from "react-icons/bi";
 import BackButton from "../components/utilies/BackButton";
+import { useNavigate } from "react-router-dom";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -27,15 +29,30 @@ const ProductDetails = () => {
     fetchProduct();
   }, [id]);
 
-  if (loading) return <div className="flex flex-col items-center justify-center gap-4 p-10 text-3xl text-sky-800 min-h-screen"><p>Loading...</p> <PropagateLoader color="#075985" /></div>;
+  if (loading)
+    return (
+      <div className="flex flex-col items-center justify-center gap-4 p-10 text-3xl text-sky-800 min-h-screen">
+        <p>Loading...</p> <PropagateLoader color="#075985" />
+      </div>
+    );
 
-  if (!product) return <div className="flex items-center justify-center p-10 text-3xl  text-red-900 min-h-screen"> <BiSolidError className="text-6xl"/><p>404! Product not found</p></div> ;
+  if (!product)
+    return (
+      <div className="flex items-center justify-center p-10 text-3xl  text-red-900 min-h-screen">
+        {" "}
+        <BiSolidError className="text-6xl" />
+        <p>404! Product not found</p>
+      </div>
+    );
 
+  const handleProductUpdate = (id) => {
+    navigate(`/product/update/${id}`);
+  };
   return (
     <div className="min-h-screen grid grid-cols-1 xl:grid-cols-2 items-center gap-6 px-10 border bg-gray-800 rounded-md">
       <div>
         <img
-        className="w-full rounded-xl"
+          className="w-full rounded-xl"
           src="https://images.pexels.com/photos/335257/pexels-photo-335257.jpeg?auto=compress&cs=tinysrgb&w=600"
           alt="product-img"
         />
@@ -44,12 +61,12 @@ const ProductDetails = () => {
         <h1>
           <b>Name:</b> {product.product_name}
         </h1>
-        
+
         <p>
           <b>Price: </b> {product.product_price} ${" "}
         </p>
         <p>
-            <b>Stock: </b>
+          <b>Stock: </b>
           {product.product_qty > 0 ? (
             <span className="text-white bg-green-600 px-6 rounded-full">
               In Stock
@@ -79,8 +96,15 @@ const ProductDetails = () => {
         </p>
 
         <div className="mt-4 flex text-xl items-center gap-4">
-            <button className="text-white border bg-yellow-600 hover:bg-yellow-800 rounded-full px-6 py-4 transition-all delay-150">Edit Product</button>
-            <button className="text-white border bg-red-600 hover:bg-red-800 rounded-full px-6 py-4 transition-all delay-150">Delete Product</button>
+          <button
+            className="text-white border bg-yellow-600 hover:bg-yellow-800 rounded-full px-6 py-4 transition-all delay-150"
+            onClick={() => handleProductUpdate(product._id)}
+          >
+            Edit Product
+          </button>
+          <button className="text-white border bg-red-600 hover:bg-red-800 rounded-full px-6 py-4 transition-all delay-150">
+            Delete Product
+          </button>
         </div>
 
         <BackButton route={"/"} />
