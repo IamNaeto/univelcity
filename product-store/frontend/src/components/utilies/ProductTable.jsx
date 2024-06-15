@@ -8,6 +8,10 @@ import { useNavigate } from "react-router-dom";
 const ProductTable = ({ data }) => {
   const navigate = useNavigate()
 
+  const handleProductInfo = (id) => {
+    navigate(`/product/${id}`)
+  }
+
   const handleEditProduct = (id) => {
     navigate(`/product/update/${id}`)
   }
@@ -39,12 +43,12 @@ const ProductTable = ({ data }) => {
               )}</td>
             <td className="border border-slate-900 rounded-md text-center">
               <div className="flex justify-center gap-x-4">
-                <Link to={"/"}>
-                  <TbInfoSquareRounded className="text-2xl text-green-600" />
-                </Link>
+                <TbInfoSquareRounded 
+                className="text-2xl text-green-600 hover:text-green-400 cursor-pointer delay-150 transition-colors" 
+                onClick={() => (handleProductInfo(product._id))}/>
 
                   <BiMessageSquareEdit 
-                  className="text-2xl text-yellow-600 hover:text-yellow-400 cursor-pointer"
+                  className="text-2xl text-yellow-600 hover:text-yellow-400 cursor-pointer delay-150 transition-colors"
                   onClick={() => (handleEditProduct(product._id))}
                   />
                   
