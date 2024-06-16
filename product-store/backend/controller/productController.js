@@ -89,19 +89,17 @@ const updateProduct = async (req, res) => {
 
 // Helps to delete a product by id
 const deleteProduct = async (req, res) => {
-  async (req, res) => {
-    try {
-      const { id } = req.params;
-      const deletedProduct = await productSchema.findByIdAndDelete(id);
-      if (!deletedProduct) {
-        res.status(404).send({ msg: "Invalid ID; product not found" });
-        return;
-      }
-      res.status(200).send({ msg: "Product deleted successfully" });
-    } catch (error) {
-      res.status(500).send({ msg: "Internal Server Error" });
+  try {
+    const { id } = req.params;
+    const deletedProduct = await productSchema.findByIdAndDelete(id);
+    if (!deletedProduct) {
+      res.status(404).send({ msg: "Invalid ID; product not found" });
+      return;
     }
-  };
+    res.status(200).send({ msg: "Product deleted successfully" });
+  } catch (error) {
+    res.status(500).send({ msg: "Internal Server Error" });
+  }
 };
 
 module.exports = {
