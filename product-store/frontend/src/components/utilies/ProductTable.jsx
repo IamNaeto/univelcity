@@ -69,7 +69,7 @@ const ProductTable = ({ data, fetchData }) => {
       >
         <div className="flex flex-col items-center justify-center gap-4 bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto text-center">
           <BiSolidError className=" text-center text-5xl text-red-500" />
-          <h2 className="text-xl font-bold">Are you sure you want to delete product?</h2>
+          <h2 className="text-xl font-bold">Are you sure you want to delete this product?</h2>
           <p className="text-red-600 font-bold">This action cannot be reversed!</p>
           <div className="flex gap-6">
             <button onClick={confirmDelete} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Yes</button>
