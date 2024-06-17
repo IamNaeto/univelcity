@@ -23,24 +23,24 @@ const Home = () => {
   const apiUrl = import.meta.env.VITE_APP_PRODUCT_ROUTE_URL;
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get(apiUrl);
-        const data = response.data;
-        setData(data);
-        console.log(data);
-        toast.success("Data fetched successfully");
-      } catch (error) {
-        console.error(error);
-        toast.error("Error: " + error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchData();
   }, [apiUrl]);
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(apiUrl);
+      const data = response.data;
+      setData(data);
+      console.log(data);
+      toast.success("Data fetched successfully");
+    } catch (error) {
+      console.error(error);
+      toast.error("Error: " + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen px-20 py-4 bg-[#f1f5fd]">
@@ -74,7 +74,7 @@ const Home = () => {
             <PropagateLoader color="#075985" />
           </div>
         ) : showType === "table" ? (
-          <ProductTable data={data} />
+          <ProductTable data={data} fetchData={fetchData} />
         ) : (
           <ProductCard data={data} />
         )}
