@@ -4,16 +4,16 @@ import "./App.css";
 import Home from "./pages/Home";
 import ProductDetails from "./pages/ProductDetail";
 import CreateProduct from "./pages/CreateProduct";
-import UpdateProduct from "./pages/UpdateProduct"
+import EditProduct from "./pages/EditProduct"
 
 function App() {
   return (
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/product/details/:id" element={<ProductDetails />} />
         <Route path="/product/create" element={<CreateProduct />} />
-        <Route path="/product/update/:id" element={<UpdateProduct />} />
+        <Route path="/product/edit/:id" element={<EditProduct />} />
       </Routes>
     </div>
   );

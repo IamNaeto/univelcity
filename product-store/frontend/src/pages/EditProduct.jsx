@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { BiSolidError } from "react-icons/bi";
 
-const CreateProduct = () => {
+const EditProduct = () => {
   const [name, setName] = useState("");
   const [qty, setQty] = useState("");
   const [price, setPrice] = useState("");
@@ -81,7 +81,7 @@ const CreateProduct = () => {
       console.log(request);
       toast.success("Product updated successfully");
       setTimeout(() => {
-        navigate(`/product/${id}`);
+        navigate(`/product/details/${id}`);
       }, 2000);
     } catch (error) {
       console.log("Error: ", error);
@@ -175,4 +175,4 @@ const CreateProduct = () => {
   );
 };
 
-export default CreateProduct;
+export default EditProduct;

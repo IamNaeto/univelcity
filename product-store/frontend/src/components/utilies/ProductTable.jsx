@@ -11,7 +11,7 @@ import { BiSolidError } from "react-icons/bi";
 
 const ProductTable = ({ data, fetchData }) => {
   const [productId, setProductId] = useState(null)
-   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const navigate = useNavigate()
 
   // open modal and set the product id in state
@@ -49,17 +49,17 @@ const ProductTable = ({ data, fetchData }) => {
 
   // navigate to product info/details page with product id captured
   const handleProductInfo = (id) => {
-    navigate(`/product/${id}`)
+    navigate(`/product/details/${id}`)
   }
 
-   // navigate to product edit page with product id captured
+  // navigate to product edit page with product id captured
   const handleEditProduct = (id) => {
-    navigate(`/product/update/${id}`)
+    navigate(`/product/edit/${id}`)
   }
 
   return (
     <table className="w-full border-separate border-spacing-1">
-       <Modal
+      <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Confirm Delete"
@@ -68,7 +68,7 @@ const ProductTable = ({ data, fetchData }) => {
         overlayClassName="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
       >
         <div className="flex flex-col items-center justify-center gap-4 bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto text-center">
-          <BiSolidError className=" text-center text-5xl text-red-500"/>
+          <BiSolidError className=" text-center text-5xl text-red-500" />
           <h2 className="text-xl font-bold">Are you sure you want to delete product?</h2>
           <p className="text-red-600 font-bold">This action cannot be reversed!</p>
           <div className="flex gap-6">
@@ -102,19 +102,19 @@ const ProductTable = ({ data, fetchData }) => {
               )}</td>
             <td className="border border-slate-900 rounded-md text-center">
               <div className="flex justify-center gap-x-4">
-                <TbInfoSquareRounded 
-                className="text-2xl text-green-600 hover:text-green-400 cursor-pointer delay-150 transition-colors" 
-                onClick={() => (handleProductInfo(product._id))}/>
+                <TbInfoSquareRounded
+                  className="text-2xl text-green-600 hover:text-green-400 cursor-pointer delay-150 transition-colors"
+                  onClick={() => (handleProductInfo(product._id))} />
 
-                  <BiMessageSquareEdit 
+                <BiMessageSquareEdit
                   className="text-2xl text-yellow-600 hover:text-yellow-400 cursor-pointer delay-150 transition-colors"
                   onClick={() => (handleEditProduct(product._id))}
-                  />
-                  
-                  <MdDeleteOutline 
+                />
+
+                <MdDeleteOutline
                   className="text-2xl text-red-600 hover:text-red-400 cursor-pointer delay-150 transition-colors"
-                  onClick={() => (openModal(product._id))} 
-                  />
+                  onClick={() => (openModal(product._id))}
+                />
               </div>
             </td>
           </tr>

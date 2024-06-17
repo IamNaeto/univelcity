@@ -72,7 +72,7 @@ const ProductDetails = () => {
   };
 
   const handleProductUpdate = (id) => {
-    navigate(`/product/update/${id}`);
+    navigate(`/product/edit/${id}`);
   };
 
   return (
@@ -98,8 +98,10 @@ const ProductDetails = () => {
       </Modal>
       
       <div>
+        <BackButton route={"/"}/>
+
         <img
-          className="w-full rounded-xl"
+          className="w-full rounded-xl mt-4"
           src="https://images.pexels.com/photos/335257/pexels-photo-335257.jpeg?auto=compress&cs=tinysrgb&w=600"
           alt="product-img"
         />
@@ -156,8 +158,6 @@ const ProductDetails = () => {
             Delete Product
           </button>
         </div>
-
-        <BackButton route={"/"} />
 
         <Toaster position="top-right" richColors/>
       </div>
